@@ -8,7 +8,7 @@ const Navbar = () => {
     <>
       <div className="w-100 shadow py-3">
         <div className="flex align-center justify-around py-2">
-          <Link to={"/"} className="text-lg text-green-400 fw-600">
+          <Link to={"/"} className="text-green-400 font-bold text-2xl">
             the blog
           </Link>
 
