@@ -18,6 +18,15 @@ class Blog:
         return Response(serializer.data)
     
     @api_view(['GET'])
+    def getPost(request, id):
+
+        posts = Post.objects.get(pk = id)
+        
+        serializer = PostSerializers(posts, many = False)
+
+        return Response(serializer.data)
+    
+    @api_view(['GET'])
     def getCategories(request):
 
         categories = Category.objects.all()

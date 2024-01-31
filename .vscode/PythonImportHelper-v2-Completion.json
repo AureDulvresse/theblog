@@ -779,7 +779,7 @@
         "kind": 5,
         "importPath": "backend.blog.urls",
         "description": "backend.blog.urls",
-        "peekOfCode": "app_name = 'blog'\nurlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n]",
+        "peekOfCode": "app_name = 'blog'\nurlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n    path('post/<int:id>', views.Blog.getPost, name=\"getPost\"),\n]",
         "detail": "backend.blog.urls",
         "documentation": {}
     },
@@ -788,7 +788,7 @@
         "kind": 5,
         "importPath": "backend.blog.urls",
         "description": "backend.blog.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n    path('post/<int:id>', views.Blog.getPost, name=\"getPost\"),\n]",
         "detail": "backend.blog.urls",
         "documentation": {}
     },
@@ -797,7 +797,7 @@
         "kind": 6,
         "importPath": "backend.blog.views",
         "description": "backend.blog.views",
-        "peekOfCode": "class Blog:\n    @api_view(['GET'])\n    def getPosts(request):\n        posts = Post.objects.all().order_by('-updated_at')\n        serializer = PostSerializers(posts, many = True)\n        return Response(serializer.data)\n    @api_view(['GET'])\n    def getCategories(request):\n        categories = Category.objects.all()\n        serializer = CategorySerializers(categories, many = True)",
+        "peekOfCode": "class Blog:\n    @api_view(['GET'])\n    def getPosts(request):\n        posts = Post.objects.all().order_by('-updated_at')\n        serializer = PostSerializers(posts, many = True)\n        return Response(serializer.data)\n    @api_view(['GET'])\n    def getPost(request, id):\n        posts = Post.objects.get(pk = id)\n        serializer = PostSerializers(posts, many = False)",
         "detail": "backend.blog.views",
         "documentation": {}
     },

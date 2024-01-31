@@ -5,7 +5,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
 import ShowPost from "./pages/ShowPost";
 import ErrorPage from "./pages/ErrorPage";
-import Navbar from "./components/blog/navbar";
 
 const router = createBrowserRouter([
   {
@@ -18,12 +17,21 @@ const router = createBrowserRouter([
     element: <ShowPost />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/signin",
+    element: <h1>Sign in</h1>,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/login",
+    element: <h1>Log in</h1>,
+    errorElement: <ErrorPage />,
+  },
 ]);
 
 const App = () => {
   return (
     <React.StrictMode>
-      <Navbar />
       <RouterProvider router={router} />
     </React.StrictMode>
   );

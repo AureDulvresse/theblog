@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import PostList from "./PostList";
 
-const Post = () => {
+const Posts = () => {
   const [posts, setposts] = useState([]);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const Post = () => {
   );
 };
 
-export default Post;
+export default Posts;
