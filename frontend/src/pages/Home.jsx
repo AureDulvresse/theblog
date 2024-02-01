@@ -41,7 +41,7 @@ const Home = () => {
             {categories.map((category, index) => (
               <FilterItem
                 key={index}
-                filterName={category.name}
+                filter={category.name}
                 onClick={() => {
                   return handleFilterByCategory(category.id);
                 }}

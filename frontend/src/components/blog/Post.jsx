@@ -4,6 +4,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
+  const now = new Date();
+  const updated_date = new Date(post.updated_at);
+  let dateAgo = now - updated_date;
+  dateAgo = Math.floor(dateAgo / 86400000);
+
   return (
     <>
       <div className="px-2 py-3 w-60 mt-3 mb-1 shadow-md rounded flex justify-between items-start flex-col">
@@ -17,7 +22,10 @@ const Post = ({ post }) => {
 
         <div className="mb-2">
           <h3 className="text-green-400 font-semibold">{post.title}</h3>
-          <p>{post.excerpt}</p>
+          <p className="text-black">{post.excerpt}</p>
+          <p className=" text-sm text-slate-400 font-italic">
+            Dernière mise à jour : {dateAgo.toString()} jours
+          </p>
         </div>
 
         <Link
