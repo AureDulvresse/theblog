@@ -7,22 +7,21 @@ import axios from "axios";
 const PostList = ({ filter }) => {
   const [posts, setposts] = useState([]);
 
-  let url;
-
   useEffect(() => {
-    getPosts();
-  }, []);
+    getPosts(filter);
+  }, [filter]);
 
-  if (filter == 0) {
-    url = "http://localhost:8000/blog/";
-  } else {
-    url = "http://localhost:8000/blog/" + filter;
-  }
+  let getPosts = async (filter) => {
+    let url = "http://localhost:8000/blog/";
 
-  let getPosts = async () => {
+    filter == "all"
+      ? url.concat(filter)
+      : url.concat("post/categories/" + filter);
+
     let response = await axios.get(url);
     let data = await response.data;
     setposts(data);
+    console.log(url);
   };
 
   return (

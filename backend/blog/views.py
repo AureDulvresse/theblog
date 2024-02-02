@@ -27,10 +27,28 @@ class Blog:
         return Response(serializer.data)
     
     @api_view(['GET'])
+    def filterByCategory(request, category):
+
+        posts = Post.objects.all().filter(category_id__name__icontains = category).order_by("-updated_at")
+
+        serializer = PostSerializers(posts, many = True)
+
+        return Response(serializer.data)
+    
+    @api_view(['GET'])
     def getCategories(request):
 
         categories = Category.objects.all()
 
         serializer = CategorySerializers(categories, many = True)
+
+        return Response(serializer.data)
+    
+    @api_view(['GET'])
+    def getPostCategory(request, category_id):
+        
+        category = Category.objects.get(pk = category_id)
+
+        serializer = CategorySerializers(category, many = False)
 
         return Response(serializer.data)

@@ -7,7 +7,7 @@ import FilterItem from "../components/blog/FilterItem";
 
 const Home = () => {
   const [categories, setCategories] = useState([]);
-  const [filter, setFilter] = useState(0);
+  const [filter, setFilter] = useState();
 
   useEffect(() => {
     getCategories();
@@ -19,9 +19,10 @@ const Home = () => {
     setCategories(data);
   };
 
-  const handleFilterByCategory = (id) => {
-    setFilter(id);
-    console.log(id);
+  const handleFilterByCategory = (category) => {
+    setFilter(category);
+    console.log("category", category);
+    console.log("current filter", filter);
   };
 
   return (
@@ -34,18 +35,23 @@ const Home = () => {
           <ul className="px-4 py-2">
             <li
               className="text-white mb-2 bg-green-500 px-2 py-1 rounded cursor-pointer"
-              onClick={() => handleFilterByCategory(0)}
+              onClick={() => {
+                return handleFilterByCategory("all");
+              }}
             >
-              Tous les Posts
+              <p>Tous les Posts</p>
             </li>
             {categories.map((category, index) => (
-              <FilterItem
+              <li
                 key={index}
-                filter={category.name}
+                className="text-gray-600 mb-2 bg-slate-200 px-2 py-1 rounded cursor-pointer"
                 onClick={() => {
-                  return handleFilterByCategory(category.id);
+                  console.log("click");
+                  return handleFilterByCategory(category.name);
                 }}
-              />
+              >
+                <FilterItem filterName={category.name} />
+              </li>
             ))}
           </ul>
         </div>

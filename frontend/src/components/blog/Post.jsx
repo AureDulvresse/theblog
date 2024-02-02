@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+import axios from "axios";
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Post = ({ post }) => {
@@ -8,6 +9,19 @@ const Post = ({ post }) => {
   const updated_date = new Date(post.updated_at);
   let dateAgo = now - updated_date;
   dateAgo = Math.floor(dateAgo / 86400000);
+
+  const [postCategory, setPostCategory] = useState({});
+
+  useEffect(() => {
+    getPostCategory();
+  });
+
+  const url = "http://localhost:8000/blog/categories/".concat(post.category_id);
+
+  const getPostCategory = async () => {
+    let response = await axios.get(url);
+    setPostCategory(response.data);
+  };
 
   return (
     <>
@@ -21,10 +35,14 @@ const Post = ({ post }) => {
         </div>
 
         <div className="mb-2">
+          <h5 className="text-sm text-green-400 font-light italic">
+            {postCategory.name}
+          </h5>
           <h3 className="text-green-400 font-semibold">{post.title}</h3>
           <p className="text-black">{post.excerpt}</p>
-          <p className=" text-sm text-slate-400 font-italic">
-            Dernière mise à jour : {dateAgo.toString()} jours
+          <p className=" text-sm text-slate-400 font-normal">
+            Dernière mise à jour :{" "}
+            {dateAgo == 0 ? "aujourd'hui" : dateAgo.toString().concat(" jours")}
           </p>
         </div>
 

@@ -779,7 +779,7 @@
         "kind": 5,
         "importPath": "backend.blog.urls",
         "description": "backend.blog.urls",
-        "peekOfCode": "app_name = 'blog'\nurlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n    path('post/<int:id>', views.Blog.getPost, name=\"getPost\"),\n]",
+        "peekOfCode": "app_name = 'blog'\nurlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n    path('categories/<int:category_id>', views.Blog.getPostCategory, name=\"getPostCategory\"),\n    path('post/categories/<str:category>', views.Blog.filterByCategory, name=\"filterByCategory\"),\n    path('post/<int:id>', views.Blog.getPost, name=\"getPost\"),\n]",
         "detail": "backend.blog.urls",
         "documentation": {}
     },
@@ -788,7 +788,7 @@
         "kind": 5,
         "importPath": "backend.blog.urls",
         "description": "backend.blog.urls",
-        "peekOfCode": "urlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n    path('post/<int:id>', views.Blog.getPost, name=\"getPost\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('', views.Blog.getPosts, name=\"getPosts\"),\n    path('categories/', views.Blog.getCategories, name=\"getCategories\"),\n    path('categories/<int:category_id>', views.Blog.getPostCategory, name=\"getPostCategory\"),\n    path('post/categories/<str:category>', views.Blog.filterByCategory, name=\"filterByCategory\"),\n    path('post/<int:id>', views.Blog.getPost, name=\"getPost\"),\n]",
         "detail": "backend.blog.urls",
         "documentation": {}
     },
