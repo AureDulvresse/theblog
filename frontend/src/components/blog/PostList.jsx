@@ -4,19 +4,21 @@ import Post from "./Post";
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-const PostList = ({ filter }) => {
+const PostList = ({ currentFilter }) => {
   const [posts, setposts] = useState([]);
 
   useEffect(() => {
-    getPosts(filter);
-  }, [filter]);
+    getPosts(currentFilter);
+  }, []);
 
-  let getPosts = async (filter) => {
+  let getPosts = async (currentFilter) => {
     let url = "http://localhost:8000/blog/";
 
-    filter == "all"
-      ? url.concat(filter)
-      : url.concat("post/categories/" + filter);
+    currentFilter == "all"
+      ? url.concat(currentFilter)
+      : url.concat("post/categories/" + currentFilter);
+
+    console.log(currentFilter);
 
     let response = await axios.get(url);
     let data = await response.data;

@@ -29,7 +29,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="flex justify-between item-center">
-        <PostList filter={filter} />
+        <PostList currentFilter={filter} />
 
         <div className="shadow mt-3 h-56 fixed right-32 rounded bg-slate-300">
           <ul className="px-4 py-2">
